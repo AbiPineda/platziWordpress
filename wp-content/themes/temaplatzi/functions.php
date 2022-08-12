@@ -2,6 +2,9 @@
 function init_template(){
     add_theme_support('post-thumbnails');
     add_theme_support('title-tag');
+
+    /* Lugar donde el administrador insertara el menu */
+    register_nav_menus( array('top_menu'=> 'Menú Principal') );
 }
 
 add_action('after_setup_theme','init_template');
@@ -26,4 +29,19 @@ wp_enqueue_script('bootstrap','https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist
 
 /* Hooks que se ejecutara cuando inicialice/renderize la pagina */
 add_action('wp_enqueue_scripts','assets');
-?>
+
+function sidebar(){
+    register_sidebar(
+            array(
+                'name' => 'Pie de pagina',
+                'id' => 'footer',
+                'description' => 'Zona de Widgets para pie de pagina',
+                'before_title' => '<p>',
+                'after_title' => '</p>',
+                'before_widget' => '<div id="%1$s" class= "%2$s">',
+                'after_widget'  => '</div>',
+            )    
+        );
+}
+add_action('widgets_init', 'sidebar');
+
