@@ -12,8 +12,8 @@
                 </h1>
                 <div class="row">
                 
-                    <div class="col-6">
-                        <?php the_post_thumbnail( 'large');?>
+                    <div class="col-4">
+                        <?php the_post_thumbnail('medium');?>
                     </div>
                     <div class="col-6">
                         <?php the_content(); ?>
