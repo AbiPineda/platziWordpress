@@ -11,7 +11,7 @@
     <?php }  
         }
     ?>
-    <div class="lista-productos">
+    <div class="lista-productos my-5">
         <h2 class="text-center">Productos</h2>
         <div class="row">
 
@@ -20,6 +20,9 @@
             'post_type' => 'producto',
             /* define la cantidad de productos a traer: */
             'post_per_page'=> -1,
+            /* Orden en que se mostrara el contenido */
+            'order' => 'ASC',
+            'orderby'=> 'title'
         );
         $productos = new WP_Query($args);
 
@@ -33,8 +36,10 @@
                         the_post_thumbnail('large');
                         ?>
                     </figure>
-                    <h4>
-                        <a href="<?php the_permalink() ?>"></a>
+                    <h4 class="my-3 text-center">
+                        <a href="<?php the_permalink(); ?>">
+                        <?php the_title(); ?>
+                    </a>
                     </h4>
                 </div>
             <?php 
