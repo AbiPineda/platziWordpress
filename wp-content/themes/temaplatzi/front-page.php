@@ -38,7 +38,7 @@
                 </figure>
                 <h4 class="my-3 text-center">
                     <a class="btn btn-outline-primary" href="<?php the_permalink(); ?>">
-                        <?php the_title(); ?>
+                        ver <?php the_title(); ?>
                     </a>
                 </h4>
                
