@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","mappings":";;;;;AAAAA,OAAO,CAACC,GAAR,CAAY,eAAZ,E","sources":["webpack://blocks/./src/index.js"],"sourcesContent":["console.log(\"hola indez js\");"],"names":["console","log"],"sourceRoot":""}
