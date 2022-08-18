@@ -47,16 +47,22 @@
                     $productos->the_post();
                     ?>
             <div class="col-md-4 col-12 my-3 text-center">
-                <figure class="card-img-top">
-                    <?php 
+                <div class="col">
+                    <div class="card">
+                        <img class="card-img-top">
+                        <?php 
                             the_post_thumbnail('large');
                             ?>
-                </figure>
-                <h4 class="my-3 text-center">
-                    <a class="btn btn-outline-primary" href="<?php the_permalink(); ?>">
-                        ver <?php the_title(); ?>
-                    </a>
-                </h4>
+                        </img>
+                        <div class="card-body">
+                            <h4 class="my-3 text-center">
+                                <a class="btn btn-outline-primary" href="<?php the_permalink(); ?>">
+                                    ver <?php the_title(); ?>
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <?php 
