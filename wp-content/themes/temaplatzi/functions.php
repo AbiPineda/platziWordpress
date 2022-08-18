@@ -26,8 +26,11 @@ wp_enqueue_script('bootstrap','https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist
 /* mis propios scripts */
  wp_enqueue_script('custom',get_template_directory_uri().'/assets/js/custom.js','','1.0',true);
 
- wp_localize_script( 'custom', 'pg', array('ajaxurl' => admin_url( 'admin-ajax.php' )));
-
+ /* API */
+ wp_localize_script( 'custom', 'pg', array(
+    // 'ajaxurl' => admin_url( 'admin-ajax.php' ),
+    'apiurl'  => home_url('wp-json/pg/v1/')
+));
 }
 
 /* Hooks que se ejecutara cuando inicialice/renderize la pagina */
@@ -126,4 +129,41 @@ function pgFiltroProductos() {
         }
     }
     wp_send_json( $return );
+}
+/* Endpoints */
+add_action( 'rest_api_init', 'novedadesAPI' );
+
+function novedadesAPI() {
+    register_rest_route( 
+        'pg/v1',
+        '/novedades/(?<cantidad>\d+)',
+        [ 
+            'methods' => 'GET',
+            'callback' => 'pedidoNovedades'
+        ]
+    );
+}
+
+function pedidoNovedades($data) {
+    $args = array(
+        'post_type' => 'producto',
+        'posts_per_page' => $data['cantidad'],
+        'order'     => 'ASC',
+        'orderby' => 'title',
+    );
+
+    $novedades = new WP_Query($args);
+
+    if ($novedades->have_posts( )) {
+        while ($novedades->have_posts()) {
+            $novedades->the_post();
+
+            $return[] = array(
+                'imagen' => get_the_post_thumbnail( get_the_id( ), 'large' ),
+                'link'   => get_the_permalink( ),
+                'titulo' => get_the_title( )
+            );
+        }
+        return $return;
+    }
 }
