@@ -8,10 +8,13 @@
     ?>
     <?php $taxonomy = get_the_terms(get_the_ID(),'categoria-productos');?>
     <div class="row my-5">
-        <div class="col-md-6 col-12">
-            <?php the_post_thumbnail('large')?>
+        <div class="col-md-6 col-12" style="text-align: center;">
+            <?php the_post_thumbnail('medium')?>
         </div>
         <div class="col-md-6 col-12">
+            <?php echo do_shortcode('[contact-form-7 id="53" title="Contact form 1"]');?>
+        </div>
+        <div class="col-12">
             <?php the_content();?>
         </div>
     </div>
