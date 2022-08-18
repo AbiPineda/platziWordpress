@@ -14,7 +14,23 @@
 
     <div class="lista-productos my-5 ">
         <h2 class="text-center">Productos</h2>
-        <div class="row ">
+        <div class="row">
+            <div class="col-12">
+                <select class="form-control" name="categorias-productos" id="categorias-productos">
+                    <option value="">Todas las categorías</option>
+                    <!--  categoria-productos -> Slug de la taxonomia 
+                    en el array devolvemos solo los terminos que tengan productos asociados.
+                    -->
+                    <?php $terms = get_terms('categoria-productos', array('hide_empty' => true)); ?>
+                    <?php foreach ($terms as $term){ ?>
+                    <option value="<?php echo $term->slug  ?>">
+                        <?php echo $term->name ?>
+                    </option>
+                    <?php } ?>
+                </select>
+            </div>
+        </div>
+        <div id="resultados-productos" class="row justify-content-center">
             <?php
             $args = array(
                 'post_type' => 'producto',
@@ -30,7 +46,7 @@
                 while($productos->have_posts()){
                     $productos->the_post();
                     ?>
-            <div class="col-4">
+            <div class="col-md-4 col-12 my-3 text-center">
                 <figure class="card-img-top">
                     <?php 
                             the_post_thumbnail('large');
@@ -41,7 +57,7 @@
                         ver <?php the_title(); ?>
                     </a>
                 </h4>
-               
+
             </div>
             <?php 
             }
