@@ -1,2 +1,2 @@
-# Curso-Practico-Wordpress
+# Curso-Wordpress
  desarrollo de temas y plugins
